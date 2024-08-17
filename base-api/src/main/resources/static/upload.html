@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <h2>Upload image file</h2>
+        <input type="file" name="upload" id="uploads">
+        <button id="b-upload" onClick="uploadFile()">upload</button>
+
+        <script>
+            async function uploadFile(){
+                let formData = new FormData();
+                formData.append("data", uploads.files[0]);
+                await fetch('http://localhost:8080/photo', {
+                    method: 'POST',
+                    body: formData,
+                }).then(res => res.text())
+                .then(text => alert(text));
+            }
+        </script>
+    </body>
+</html>
